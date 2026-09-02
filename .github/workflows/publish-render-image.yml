@@ -38,3 +38,11 @@ jobs:
           labels: |
             org.opencontainers.image.revision=b26919f7e4bb4e5b0b24ec66fd910ea0a4d5f2d7
             org.opencontainers.image.source=https://github.com/wathaiqihealth/Health-Credential-Hub
+
+      - name: Allow Render to pull the image anonymously
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: >-
+          gh api --method PATCH
+          /orgs/${{ github.repository_owner }}/packages/container/health-credential-hub
+          -f visibility=public
