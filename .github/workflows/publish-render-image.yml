@@ -33,16 +33,16 @@ jobs:
           push: true
           platforms: linux/amd64
           tags: |
-            ghcr.io/wathaiqihealth/health-credential-hub:b26919f
-            ghcr.io/wathaiqihealth/health-credential-hub:latest
+            ghcr.io/wathaiqihealth/health-credential-hub-render-source:b26919f
+            ghcr.io/wathaiqihealth/health-credential-hub-render-source:latest
           labels: |
             org.opencontainers.image.revision=b26919f7e4bb4e5b0b24ec66fd910ea0a4d5f2d7
-            org.opencontainers.image.source=https://github.com/wathaiqihealth/Health-Credential-Hub
+            org.opencontainers.image.source=https://github.com/wathaiqihealth/health-credential-hub-render-source
 
       - name: Allow Render to pull the image anonymously
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: >-
           gh api --method PATCH
-          /orgs/${{ github.repository_owner }}/packages/container/health-credential-hub
+          /orgs/${{ github.repository_owner }}/packages/container/health-credential-hub-render-source
           -f visibility=public
